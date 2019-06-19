@@ -1,0 +1,7 @@
+- hosts: tendrl-node
+  tasks:
+    - name: Install gdeploy
+      yum:
+        name: /home/gowtham/tendrl-vagrant/gdeploy-2.0.2-31.el7rhgs.noarch.rpm
+        state: present
+

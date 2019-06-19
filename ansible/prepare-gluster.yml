@@ -6,9 +6,11 @@
 
   tasks:
     - name: add gluster repo
-      yum:
-        name: centos-release-gluster
-        state: present
+      yum_repository:
+        name: gluster
+        description: gluster repo
+        baseurl: http://artifacts.ci.centos.org/gluster/nightly/release-3.12/$releasever/$basearch
+        gpgcheck: no
 
     - name: Install GlusterFS Server
       yum:

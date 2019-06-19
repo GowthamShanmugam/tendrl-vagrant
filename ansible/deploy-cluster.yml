@@ -5,15 +5,22 @@
   become: true
 
   tasks:
+    - name: copy rpm
+      copy:
+        src: /home/gowtham/tendrl-vagrant/gdeploy-2.0.2-31.el7rhgs.noarch.rpm
+        dest: /root/gdeploy-2.0.2-31.el7rhgs.noarch.rpm
+        owner: root
+        group: root
+        mode: 0777
+
     - name: Install gdeploy
       yum:
-        name: gdeploy
+        name: /root/gdeploy-2.0.2-31.el7rhgs.noarch.rpm
         state: present
 
     - name: Generate gdeploy.conf
       template:
         src: gdeploy-{{ provider }}.conf.j2
         dest: "/tmp/gdeploy.conf"
-
     - name: Run GDeploy
       shell: 'gdeploy -c /tmp/gdeploy.conf'

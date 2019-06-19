@@ -4,7 +4,7 @@
 {% endfor %}
 
 {% set devices = [] %}
-{% for device,options in ansible_devices.iteritems()|sort(attribute='0') %}
+{% for device,options in ansible_devices.items()|sort(attribute='0') %}
   {% if options.vendor == "0x1af4" and options.partitions.items()|length == 0 %}
     {% set __ = devices.append(device) %}
   {% endif %}
